@@ -3,9 +3,12 @@ const PORT = 3000;
 const app = express();
 const authRouter = require("./routes/auth");
 const mongoose = require("mongoose");
+const adminRouter = require("./routes/admin");
 app.use(express.json());
 
 app.use(authRouter);
+app.use(adminRouter);
+
 const DB = "mongodb+srv://talha:talha123@cluster0.jcrdbuk.mongodb.net/";
 
 mongoose.connect(DB).then(() => {

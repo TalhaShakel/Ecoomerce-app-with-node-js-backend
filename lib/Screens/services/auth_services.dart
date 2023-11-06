@@ -42,7 +42,7 @@ class AuthService {
       print("Request Body: ${user.toJson()}");
 
       http.Response res = await http.post(
-        Uri.parse('http://192.168.0.105:3000/api/signup'),
+        Uri.parse('$uri/api/signup'),
         body: user.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -108,7 +108,7 @@ class AuthService {
         token: '',
       );
       http.Response res = await http.post(
-        Uri.parse('http://192.168.0.105:3000/api/signin'),
+        Uri.parse('$uri/api/signin'),
         body: user.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
