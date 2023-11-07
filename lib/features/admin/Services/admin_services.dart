@@ -37,14 +37,14 @@ class AdminServices {
 
       for (int i = 0; i < l; i++) {
         print(i);
-        // CloudinaryResponse response = await cloudinary.uploadFile(
-        //   CloudinaryFile.fromFile(images[i].path,
-        //       resourceType: CloudinaryResourceType.Image),
-        // );
-        CloudinaryResponse res = await cloudinary.uploadFile(
-          CloudinaryFile.fromFile(images[i].path, folder: name),
+        CloudinaryResponse response = await cloudinary.uploadFile(
+          CloudinaryFile.fromFile(images[i].path,
+              resourceType: CloudinaryResourceType.Image),
         );
-        imageUrls.add(res.secureUrl);
+        // CloudinaryResponse res = await cloudinary.uploadFile(
+        //   CloudinaryFile.fromFile(images[i].path, folder: name),
+        // );
+        imageUrls.add(response.secureUrl);
       }
       print(imageUrls);
 
@@ -87,9 +87,6 @@ class AdminServices {
     }
   }
 
-  
-  
-  
   Future<List<Product>> fetchAllProducts(BuildContext context) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Product> productList = [];
@@ -118,5 +115,37 @@ class AdminServices {
       showSnackBar(context, e.toString());
     }
     return productList;
+  }
+
+  void deleteProduct({
+    required BuildContext context,
+    required Product product,
+    required VoidCallback onSuccess,
+  }) async {
+    try {
+      EasyLoading.show();
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      http.Response res = await http.post(
+        Uri.parse('$uri/admin/delete-product'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode({
+          'id': product.id,
+        }),
+      );
+      EasyLoading.dismiss();
+
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          onSuccess();
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
   }
 }
