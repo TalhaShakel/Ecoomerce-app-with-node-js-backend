@@ -4,10 +4,12 @@ const app = express();
 const authRouter = require("./routes/auth");
 const mongoose = require("mongoose");
 const adminRouter = require("./routes/admin");
-app.use(express.json());
+const productRouter = require("./routes/product");
 
+app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
+app.use(productRouter);
 
 const DB = "mongodb+srv://talha:talha123@cluster0.jcrdbuk.mongodb.net/";
 

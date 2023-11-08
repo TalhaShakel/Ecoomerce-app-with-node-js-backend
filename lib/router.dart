@@ -1,4 +1,5 @@
 // import 'package:amazoneclone/Screens/Auth/AuthScreen.dart';
+import 'package:amazone_clone/Screens/Search/Screens/search_Screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         builder: (_) => CategoryDealsScreen(
           category: category,
         ),
+      );
+    case SearchScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => SearchScreen(),
       );
     default:
       return MaterialPageRoute(

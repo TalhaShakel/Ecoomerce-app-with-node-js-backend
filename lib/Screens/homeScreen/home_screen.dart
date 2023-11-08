@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/global_variables.dart';
+import '../Search/Screens/search_Screens.dart';
 import 'widgets/carousel_image.dart';
 import 'widgets/deal_of_day.dart';
 import 'widgets/top_categories.dart';
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void navigateToSearchScreen(String query) {
-      // Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+      Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
     }
 
     final user = Provider.of<UserProvider>(context).user;
