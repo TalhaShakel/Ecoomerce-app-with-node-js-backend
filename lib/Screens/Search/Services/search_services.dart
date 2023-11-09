@@ -18,6 +18,8 @@ class SearchServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Product> productList = [];
     try {
+      print('Attempting to fetch products...'); // Debugging statement
+
       http.Response res = await http.get(
         Uri.parse('$uri/api/products/search/$searchQuery'),
         headers: {
@@ -25,6 +27,13 @@ class SearchServices {
           'x-auth-token': userProvider.user.token,
         },
       );
+
+      if (res.statusCode == 200) {
+        print('Fetch successful'); // Success debugging statement
+      } else {
+        print(
+            'Fetch failed with status: ${res.statusCode}'); // Error debugging statement
+      }
 
       httpErrorHandle(
         response: res,
@@ -42,6 +51,7 @@ class SearchServices {
         },
       );
     } catch (e) {
+      print('An exception occurred: $e'); // Exception debugging statement
       showSnackBar(context, e.toString());
     }
     return productList;

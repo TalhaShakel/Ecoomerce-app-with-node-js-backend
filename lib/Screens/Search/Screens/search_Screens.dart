@@ -9,8 +9,11 @@ import '../widget/searched_product.dart';
 
 class SearchScreen extends StatefulWidget {
   static const String routeName = '/search-screen';
-
-  const SearchScreen({super.key});
+  final String searchQuery;
+  const SearchScreen({
+    Key? key,
+    required this.searchQuery,
+  }) : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -19,6 +22,19 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   List<Product>? products;
   final SearchServices searchServices = SearchServices();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchSearchedProduct();
+  }
+
+  fetchSearchedProduct() async {
+    products = await searchServices.fetchSearchedProduct(
+        context: context, searchQuery: widget.searchQuery);
+    setState(() {});
+  }
+
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
