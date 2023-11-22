@@ -25,5 +25,42 @@ productRouter.get("/api/products/search/:name", auth, async (req, res) => {
         res.status(500).json({ error: e.message });
     }
 });
+// create a post request route to rate the product.
+productRouter.post("/api/rate-product", auth, async (req, res) => {
+    try {
+        const { id, rating } = req.body;
+        let product = await Product.findById(id);
+        console.log('Product:', product); // Add this line to check the product object
+
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        if (!product.ratings) {
+            console.log('Ratings array is undefined');
+        } else {
+            console.log('Ratings array:', product.ratings); for (let i = 0; i < product.ratings.length; i++) {
+                if (product.ratings[i].userId == req.user) {
+                    product.ratings.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+
+
+        const ratingSchema = {
+            userId: req.user,
+            rating,
+        };
+
+        product.ratings.push(ratingSchema);
+        product = await product.save();
+        res.json(product);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
 
 module.exports = productRouter;

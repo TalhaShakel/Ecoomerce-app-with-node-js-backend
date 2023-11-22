@@ -256,11 +256,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 color: GlobalVariables.secondaryColor,
               ),
               onRatingUpdate: (rating) {
-                // productDetailsServices.rateProduct(
-                //   context: context,
-                //   product: widget.product,
-                //   rating: rating,
-                // );
+                print(rating);
+                productDetailsServices.rateProduct(
+                  context: context,
+                  product: widget.product,
+                  rating: rating,
+                );
               },
             )
           ],
