@@ -25,14 +25,14 @@ class AuthService {
     try {
       EasyLoading.show();
       User user = User(
-        id: '',
-        name: name,
-        password: password,
-        email: email,
-        address: '',
-        type: '',
-        token: '',
-      );
+          id: '',
+          name: name,
+          password: password,
+          email: email,
+          address: '',
+          type: '',
+          token: '',
+          cart: []);
 
       print("""
       name: ${user.name},
@@ -99,14 +99,14 @@ class AuthService {
       EasyLoading.show();
 
       User user = User(
-        id: "",
-        name: "",
-        email: email,
-        password: password,
-        address: '',
-        type: '',
-        token: '',
-      );
+          id: "",
+          name: "",
+          email: email,
+          password: password,
+          address: '',
+          type: '',
+          token: '',
+          cart: []);
       http.Response res = await http.post(
         Uri.parse('$uri/api/signin'),
         body: user.toJson(),

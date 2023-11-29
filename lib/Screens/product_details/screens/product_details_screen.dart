@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Models/product.dart';
+import '../../../PROVIDERS/user_provider.dart';
 import '../../../common/custom_button.dart';
 import '../../../common/stars.dart';
 import '../../../constants/global_variables.dart';
@@ -32,17 +33,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   void initState() {
     super.initState();
     double totalRating = 0;
-    //   for (int i = 0; i < widget.product.rating!.length; i++) {
-    //     totalRating += widget.product.rating![i].rating;
-    //     if (widget.product.rating![i].userId ==
-    //         Provider.of<UserProvider>(context, listen: false).user.id) {
-    //       myRating = widget.product.rating![i].rating;
-    //     }
-    //   }
+    for (int i = 0; i < widget.product.rating!.length; i++) {
+      totalRating += widget.product.rating![i].rating;
+      if (widget.product.rating![i].userId ==
+          Provider.of<UserProvider>(context, listen: false).user.id) {
+        myRating = widget.product.rating![i].rating;
+      }
+    }
 
-    //   if (totalRating != 0) {
-    //     avgRating = totalRating / widget.product.rating!.length;
-    //   }
+    if (totalRating != 0) {
+      avgRating = totalRating / widget.product.rating!.length;
+    }
   }
 
   void navigateToSearchScreen(String query) {
@@ -50,10 +51,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   }
 
   void addToCart() {
-    // productDetailsServices.addToCart(
-    //   context: context,
-    //   product: widget.product,
-    // );
+    productDetailsServices.addToCart(
+      context: context,
+      product: widget.product,
+    );
   }
 
   @override
@@ -144,7 +145,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     widget.product.id!,
                   ),
                   Stars(
-                    rating: 4,
+                    rating: avgRating,
                   ),
                 ],
               ),

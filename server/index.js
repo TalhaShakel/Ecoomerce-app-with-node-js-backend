@@ -5,11 +5,13 @@ const authRouter = require("./routes/auth");
 const mongoose = require("mongoose");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
 
 app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
+app.use(userRouter);
 
 const DB = "mongodb+srv://talha:talha123@cluster0.jcrdbuk.mongodb.net/";
 
