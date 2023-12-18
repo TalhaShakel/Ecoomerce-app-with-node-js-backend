@@ -6,6 +6,7 @@ import '../../../Screens/Search/Screens/search_Screens.dart';
 import '../../../Screens/homeScreen/widgets/address_box.dart';
 import '../../../common/custom_button.dart';
 import '../../../constants/global_variables.dart';
+import '../../address/Screens/address_screen.dart';
 import '../widgets/cart_product.dart';
 import '../widgets/cart_subtotal.dart';
 
@@ -22,11 +23,11 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   void navigateToAddress(int sum) {
-    // Navigator.pushNamed(
-    //   context,
-    //   AddressScreen.routeName,
-    //   arguments: sum.toString(),
-    // );
+    Navigator.pushNamed(
+      context,
+      AddressScreen.routeName,
+      arguments: sum.toString(),
+    );
   }
 
   @override

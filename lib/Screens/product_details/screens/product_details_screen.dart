@@ -43,6 +43,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
     if (totalRating != 0) {
       avgRating = totalRating / widget.product.rating!.length;
+      print(avgRating);
     }
   }
 

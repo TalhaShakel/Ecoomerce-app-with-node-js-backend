@@ -8,6 +8,7 @@ import 'Models/product.dart';
 import 'Screens/Auth/AuthScreen.dart';
 import 'Screens/homeScreen/category_deals_screen.dart';
 import 'Screens/homeScreen/home_screen.dart';
+import 'features/address/Screens/address_screen.dart';
 import 'features/admin/screens/add_product_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -48,6 +49,14 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => ProductDetailScreen(product: product),
+      );
+    case AddressScreen.routeName:
+      var totalAmount = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => AddressScreen(
+          totalAmount: totalAmount,
+        ),
       );
     default:
       return MaterialPageRoute(

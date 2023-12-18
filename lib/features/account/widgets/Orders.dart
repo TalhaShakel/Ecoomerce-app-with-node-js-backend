@@ -48,7 +48,7 @@ class Orders extends StatelessWidget {
           ),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: GlobalVariables.carouselImages!.length,
+            itemCount: GlobalVariables.carouselImages.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
@@ -59,7 +59,7 @@ class Orders extends StatelessWidget {
                   // );
                 },
                 child: SingleProduct(
-                  image: GlobalVariables.carouselImages![index],
+                  image: GlobalVariables.carouselImages[index],
                 ),
               );
             },
